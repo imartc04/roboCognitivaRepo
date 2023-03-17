@@ -1,4 +1,4 @@
-#!/usr/bin/ python3
+#!/usr/bin/python3
 
 import roslib; roslib.load_manifest('smach_tutorials')
 import rospy
