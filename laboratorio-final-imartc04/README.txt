@@ -1,43 +1,24 @@
-####### Description #######   
-
-This package sends goals to move_base node. The goals are obtained from a .yaml file and can be sent in sequential or 
-random order. An order to stop the goal send process can be also given to move_base
-
-####### Services offered ####### 
-
-marsi_nav_set_waypoints : 
-    Set the yaml waypoint file. 
-    The file has the following format
-        id1 : [x,y, orientation_x, orientation_y, orientation_z, orientation_w]
-        ...
-        idn : [x,y, orientation_x, orientation_y, orientation_z, orientation_w]
-
-    id numbers are Natural numbers
-    Orientations are values of each quaternion component
-
-marsi_nav_move : 
-    Send goals or stop the process. Possible values passed are 0:Sequential between way points,
-    1:Random between way points, 2:Cancel movement
-
- marsi_nav_set_initPose
-    Send initial pose to AMCL
 
 
-####### Published topics #######
+#### How to use the package ####
 
-/initialpose
-/move_base/goal
+Set turtlebot env var in terminal:
+export TURTLEBOT3_MODEL=waffle
 
-####### How to use #######
-
-- Execute launch file : roslaunch simple_navigation_ros marsiTurtlebotNavigation.launch
-
-- Give marsi_nav node way points file : rosservice call /marsi_nav_set_waypoints "pointMapPath: '<path to housePoints.yaml'"
-
-- Order robot to move : rosservice call /marsi_nav_move "mode: 0"
+Call laucher in the same terminal: 
+roslaunch simple_navigation_ros marsiTurtlebotNavigation.launch
 
 
+Set turtlebot env var in another terminal:
+export TURTLEBOT3_MODEL=waffle
 
-####### Video demos #######
+Call services to move of cancel goals: 
 
-https://drive.google.com/drive/folders/1luuHtvInq9yioKXQ9o_aDTu__nHb3SXM?usp=share_link
+Cancel goals : rosservice call /marsi_nav_cancel_goals "{}" 
+Move throught waypoints sequential : rosservice call /marsi_nav_move "mode: 0"
+Move throught waypoints in random sequence: rosservice call /marsi_nav_move "mode: 1"
+Stay in the wait input state : rosservice call /marsi_nav_move "mode: 2"
+
+
+Before cancelling goals make call to rosservice call /marsi_nav_move "mode: 2" to avoid entering infinitelly in the nav state
+
