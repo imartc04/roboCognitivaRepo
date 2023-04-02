@@ -1,4 +1,6 @@
 from setuptools import setup
+import os
+from glob import glob
 
 package_name = 'yasmin_practice_py'
 scripts_path = package_name + ".scripts"
@@ -11,6 +13,9 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
+         (os.path.join('share', package_name, 'launch'), glob(os.path.join('launch', '*.launch.xml'))),
+         (os.path.join('share', package_name, 'maps'), glob(os.path.join('maps', '*'))), 
+         (os.path.join('share', package_name, 'rsc'), glob(os.path.join('rsc', '*')))    
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -24,6 +29,8 @@ setup(
             'ej1 = yasmin_practice_py.ej1:main',
             'ej2 = yasmin_practice_py.ej2:main',
             "ejTopics = yasmin_practice_py.ejTopics:main",
+            "turtlebotNavYasmin= yasmin_practice_py.turtlebotNavYasmin:main"
+           
         ],
     },
 )

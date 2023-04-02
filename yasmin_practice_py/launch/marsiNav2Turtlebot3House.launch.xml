@@ -1,0 +1,18 @@
+<launch>
+
+
+
+
+
+<include file="$(find-pkg-share nav2_bringup)/launch/tb3_simulation_launch.py">
+
+    <arg name="map" value="$(find-pkg-share yasmin_practice_py)/maps/waffleHouseMap.yaml"/>
+    <arg name="headless" value="False"/>
+    <arg name="world" value="$(find-pkg-share turtlebot3_gazebo)/worlds/turtlebot3_house.world"/>
+    <arg name="x_pose" value="-3.65"/>
+    <arg name="y_pose" value= "1.52"/>
+
+</include>
+
+
+</launch>

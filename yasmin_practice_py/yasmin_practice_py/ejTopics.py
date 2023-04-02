@@ -81,7 +81,7 @@ class DemoNode(Node):
                      transitions={"outcome3": "FOO"})
 
         # pub
-        #YasminViewerPub(self, "YASMIN_DEMO", sm)
+        YasminViewerPub(self, "YASMIN_DEMO", sm)
 
         # execute
         outcome = sm()

@@ -1,0 +1,4 @@
+int8 init_pos_id
+string init_pose_file
+
+---
